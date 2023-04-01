@@ -3,49 +3,59 @@ package com.besysoft.agenda.Exception;
 import java.time.ZonedDateTime;
 
 public class MensajeError {
-    private ZonedDateTime fechaHora;
-    private String mensaje;
-    private String exception;
+    private ZonedDateTime timestamp;
+    private String message;
+    private int status;
     private String path;
+    private String error;
 
     public MensajeError(){}
 
-    public MensajeError(Exception exception, String path){
-        this.fechaHora = ZonedDateTime.now();
-        this.mensaje = exception.getMessage();
-        this.exception = exception.getClass().getSimpleName();
+    public MensajeError(Exception exception, String path, int status, String error){
+        this.timestamp = ZonedDateTime.now();
+        this.message = exception.getMessage();
+        this.status = status;
         this.path = path;
+        this.error = error;
     }
 
-    public ZonedDateTime getFechaHora() {
-        return fechaHora;
+    public ZonedDateTime getTimestamp() {
+        return timestamp;
     }
 
-    public String getMensaje() {
-        return mensaje;
+    public String getMessage() {
+        return message;
     }
 
-    public String getException() {
-        return exception;
+    public int getStatus() {
+        return status;
     }
 
     public String getPath() {
         return path;
     }
 
-    public void setFechaHora(ZonedDateTime fechaHora) {
-        this.fechaHora = fechaHora;
+    public void setTimestamp(ZonedDateTime timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void setException(String exception) {
-        this.exception = exception;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }
