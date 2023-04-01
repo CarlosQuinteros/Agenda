@@ -2,6 +2,7 @@ package com.besysoft.agenda.Exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ApiExceptionHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(RecursoNoEncontradoException.class)
+    @ExceptionHandler({RecursoNoEncontradoException.class, HttpRequestMethodNotSupportedException.class})
     @ResponseBody
     public MensajeError recursoNoEncontradoException(HttpServletRequest request, Exception exception){
         return new MensajeError(exception, request.getRequestURI(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.name());

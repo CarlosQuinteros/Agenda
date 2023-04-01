@@ -15,7 +15,7 @@ public interface ContactoRepository extends JpaRepository<Contacto, Long> {
 
     boolean existsByPersonaId(Long idPersona);
 
-    List<Contacto> findAllByEmpresa_Nombre(String nombreEmpresa);
+    List<Contacto> findByEmpresa_Id(Long idEmpresa);
 
     List<Contacto> findAllByOrderByPersona_Apellido();
 

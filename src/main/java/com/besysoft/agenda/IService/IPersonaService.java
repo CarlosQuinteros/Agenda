@@ -15,6 +15,14 @@ public interface IPersonaService {
 
     public List<Persona> listadoPersonasPorNombre(String nombre);
 
+    public List<Persona> listadoPersonasPorApellido(String apellido);
+
+    public List<Persona> listadoPersonasPorCiudad(String ciudad);
+
+    public List<Persona> listadoPersonasPorNombreYApellido(String nombre, String apellido);
+
+    public List<Persona> personasPorVariasCiudades(String nombre, String apellido, List<String> ciudades);
+
     public Persona crearPersona(Persona persona);
 
     public Persona editarPersona(Long id, Persona persona);

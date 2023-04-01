@@ -1,5 +1,6 @@
 package com.besysoft.agenda.Dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public class EmpresaDto {
@@ -8,6 +9,7 @@ public class EmpresaDto {
     private String nombre;
 
     @NotBlank(message = "El email es obligatorio")
+    @Email(message = "El email debe tener el formato correcto")
     private String email;
 
     @NotBlank(message = "El sitio web es obligatorio")

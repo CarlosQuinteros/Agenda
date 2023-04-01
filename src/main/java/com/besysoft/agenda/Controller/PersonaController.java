@@ -16,6 +16,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.xml.transform.OutputKeys;
 import java.net.URI;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/agenda/api/personas")
@@ -71,9 +73,25 @@ public class PersonaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarPersona(@PathVariable Long id) {
-        Persona persona = personaService.obtenerPersona(id);
-        personaService.eliminarPersona(persona.getId());
+        personaService.eliminarPersona(id);
         return new ResponseEntity<>(new Mensaje("Persona eliminada correctamente"), HttpStatus.OK);
+    }
+
+    @GetMapping("/ciudad/{ciudad}")
+    public ResponseEntity personasPorCiudad(@PathVariable String ciudad){
+        List<Persona> personas = personaService.listadoPersonasPorCiudad(ciudad);
+        return ResponseEntity.ok(personas);
+    }
+
+    @GetMapping("/varias-ciudades")
+    public ResponseEntity<?> personasPorVariasCiudades(
+            @RequestParam String nombre,
+            @RequestParam String apellido,
+            @RequestParam List<String> ciudad){
+
+        List<Persona> personas = personaService.personasPorVariasCiudades(nombre, apellido, ciudad);
+
+        return ResponseEntity.ok(personas);
     }
 
 }
