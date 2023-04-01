@@ -4,3 +4,7 @@ Contiene:
 - Servicios
 - Repositorios
 - Exception Handler
+- swagger-ui
+
+Ruta de Swagger ui:
+ - /doc/swagger-ui.html
