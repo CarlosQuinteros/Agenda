@@ -20,4 +20,6 @@ public interface IContactoService {
 
     public boolean existeContactoPorPersona(Long idPersona);
 
+    public void eliminarContacto(Long id);
+
 }

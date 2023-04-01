@@ -46,8 +46,24 @@ public class PersonaController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Persona>> listadoPersonas() {
-        List<Persona> personas = personaService.listadoPersonas();
+    public ResponseEntity<List<Persona>> listadoPersonas(
+            @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) String apellido
+    ) {
+        List<Persona> personas;
+        if(!Objects.isNull(nombre) && Objects.isNull(apellido)){
+            personas = personaService.listadoPersonasPorNombre(nombre);
+            return ResponseEntity.ok(personas);
+        }
+        if(Objects.isNull(nombre) && !Objects.isNull(apellido)){
+            personas = personaService.listadoPersonasPorApellido(apellido);
+            return ResponseEntity.ok(personas);
+        }
+        if(!Objects.isNull(nombre) && !Objects.isNull(apellido)){
+            personas = personaService.listadoPersonasPorNombreYApellido(nombre,apellido);
+            return ResponseEntity.ok(personas);
+        }
+        personas = personaService.listadoPersonas();
         return new ResponseEntity<>(personas, HttpStatus.OK);
     }
 
