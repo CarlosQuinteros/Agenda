@@ -52,7 +52,7 @@ public class EmpresaService implements IEmpresaService {
     public void eliminarEmpresa(Long id) {
         Empresa empresa = obtenerEmpresa(id);
         if(contactoService.existeContactoPorEmpresa(empresa.getId())){
-            throw new BadRequestException("La empresa " + empresa.getNombre() + "tiene referencias en contactos y no se puede eliminar.");
+            throw new BadRequestException("La empresa " + empresa.getNombre() + " tiene referencias en contactos y no se puede eliminar.");
         }
         empresaRepository.deleteById(empresa.getId());
     }
